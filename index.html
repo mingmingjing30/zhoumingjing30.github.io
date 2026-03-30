@@ -138,29 +138,8 @@
         }
 
         /* Internship Section */
-        .internship-container {
-            display: flex; 
-            align-items: flex-start; 
-            gap: 40px;
-        }
-        .sticky-id-wrapper {
-            flex: 0 0 160px; 
-            position: sticky; 
-            top: 120px; 
-            height: fit-content; 
-            text-align: center;
-            z-index: 5; 
-        }
-        .sticky-id-wrapper img {
-            width: 160px;
-            height: 220px; 
-            object-fit: cover; 
-            border-radius: 10px; 
-            border: 4px solid white;
-            box-shadow: 0 6px 15px rgba(0,0,0,0.1);
-        }
         .internship-content-list {
-            flex: 1; 
+            width: 100%;
         }
 
         /* 实习经历内部的小照片排版 (Flex 布局) */
@@ -181,6 +160,7 @@
             border-radius: 8px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.1);
             border: 2px solid var(--light-bg);
+            object-fit: cover;
         }
 
         /* Travel Gallery Section */
@@ -210,16 +190,6 @@
 
         /* 移动端适配 */
         @media (max-width: 768px) {
-            .internship-container {
-                flex-direction: column; 
-                gap: 20px;
-                align-items: center;
-            }
-            .sticky-id-wrapper {
-                position: relative; 
-                top: 0;
-                margin-bottom: 20px;
-            }
             .intern-card-flex {
                 flex-direction: column-reverse; 
                 align-items: flex-start;
@@ -290,66 +260,59 @@
 
     <section id="coop">
         <h2>Internship Experience</h2>
-        <div class="internship-container">
+        
+        <div class="internship-content-list">
             
-            <div class="internship-content-list">
-                
-                <div class="card">
-                    <div class="intern-card-flex">
-                        <div class="intern-text">
-                            <h3>Intern - National Key Lab of Mechanical Transmission</h3>
-                            <p class="date">Jan 2024 - Apr 2024</p>
-                            <ul>
-                                <li>Improved LabVIEW programs for servo electric cylinders (simulator).</li>
-                                <li>Collaborated with team to optimize C++ programs for electric cylinder systems.</li>
-                            </ul>
-                        </div>
-                        <div class="intern-img-box">
-                            <img src="Profile.jpg" alt="Key Lab Internship" loading="lazy">
-                        </div>
+            <div class="card">
+                <div class="intern-card-flex">
+                    <div class="intern-text">
+                        <h3>Intern - National Key Lab of Mechanical Transmission</h3>
+                        <p class="date">Jan 2024 - Apr 2024</p>
+                        <ul>
+                            <li>Improved LabVIEW programs for servo electric cylinders (simulator).</li>
+                            <li>Collaborated with team to optimize C++ programs for electric cylinder systems.</li>
+                        </ul>
+                    </div>
+                    <div class="intern-img-box">
+                        <img src="id_photo.jpg" alt="Key Lab Internship" loading="lazy">
                     </div>
                 </div>
-
-                <div class="card">
-                    <div class="intern-card-flex">
-                        <div class="intern-text">
-                            <h3>Intern - Tsinghua Sichuan Energy Internet Research Institute</h3>
-                            <p class="date">May 2024 - Aug 2024 & Jan 2025 - Apr 2025</p>
-                            <ul>
-                                <li>Focused on patent writing and proposal preparation in the new energy field.</li>
-                                <li>Drafted project bidding documents and software manuals.</li>
-                                <li>Developed modeling of load-curtailment and dispatchable potential of EV storage in Guangzhou.</li>
-                            </ul>
-                        </div>
-                        <div class="intern-img-box">
-                            <img src="internship2.jpg" alt="Tsinghua Internship" loading="lazy">
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <div class="intern-card-flex">
-                        <div class="intern-text">
-                            <h3>Teaching Assistant - CQU-UC Joint Co-op Institute</h3>
-                            <p class="date">Sep 2025 - Dec 2025</p>
-                            <ul>
-                                <li>Assisted UC professor with coursework, graded assignments and exams.</li>
-                                <li>Purchased lab equipment, supported communication between the professor and students.</li>
-                                <li>Facilitated Sino-US academic exchange activities.</li>
-                            </ul>
-                        </div>
-                        <div class="intern-img-box">
-                            <img src="internship3.jpg" alt="TA Internship" loading="lazy">
-                        </div>
-                    </div>
-                </div>
-
             </div>
-            
-            <div class="sticky-id-wrapper">
-                <img src="id_photo.jpg" alt="Mingjing Zhou ID Photo" loading="lazy">
+
+            <div class="card">
+                <div class="intern-card-flex">
+                    <div class="intern-text">
+                        <h3>Intern - Tsinghua Sichuan Energy Internet Research Institute</h3>
+                        <p class="date">May 2024 - Aug 2024 & Jan 2025 - Apr 2025</p>
+                        <ul>
+                            <li>Focused on patent writing and proposal preparation in the new energy field.</li>
+                            <li>Drafted project bidding documents and software manuals.</li>
+                            <li>Developed modeling of load-curtailment and dispatchable potential of EV storage in Guangzhou.</li>
+                        </ul>
+                    </div>
+                    <div class="intern-img-box">
+                        <img src="internship2.jpg" alt="Tsinghua Internship" loading="lazy">
+                    </div>
+                </div>
             </div>
-            
+
+            <div class="card">
+                <div class="intern-card-flex">
+                    <div class="intern-text">
+                        <h3>Teaching Assistant - CQU-UC Joint Co-op Institute</h3>
+                        <p class="date">Sep 2025 - Dec 2025</p>
+                        <ul>
+                            <li>Assisted UC professor with coursework, graded assignments and exams.</li>
+                            <li>Purchased lab equipment, supported communication between the professor and students.</li>
+                            <li>Facilitated Sino-US academic exchange activities.</li>
+                        </ul>
+                    </div>
+                    <div class="intern-img-box">
+                        <img src="internship3.jpg" alt="TA Internship" loading="lazy">
+                    </div>
+                </div>
+            </div>
+
         </div>
     </section>
 
