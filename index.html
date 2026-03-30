@@ -5,56 +5,110 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>E-Portfolio | Mingjing Zhou (周明镜)</title>
     <style>
+        /* 深紫色主题配色方案 */
+        :root {
+            --primary-purple: #4a148c; /* 深紫主色调 */
+            --accent-purple: #9c27b0;  /* 亮紫强调色 */
+            --light-bg: #f8f6fa;       /* 淡紫灰背景 */
+            --text-main: #333333;
+            --text-light: #666666;
+        }
+
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
+            line-height: 1.7;
             margin: 0;
             padding: 0;
-            color: #333;
-            background-color: #f4f7f6;
+            color: var(--text-main);
+            background-color: var(--light-bg);
         }
+        
+        /* 顶部导航栏 - 紫色渐变 */
         header {
-            background: #2c3e50;
+            background: linear-gradient(135deg, var(--primary-purple), #6a1b9a);
             color: white;
             padding: 1rem 0;
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
         }
         nav {
             text-align: center;
         }
         nav a {
-            color: white;
+            color: rgba(255, 255, 255, 0.9);
             text-decoration: none;
             margin: 0 15px;
-            font-weight: bold;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            transition: color 0.3s;
         }
         nav a:hover {
-            color: #3498db;
+            color: #e1bee7; /* 浅紫色悬停效果 */
         }
+
         section {
-            padding: 80px 20px 40px;
+            padding: 100px 20px 40px;
             max-width: 900px;
             margin: auto;
-            border-bottom: 1px solid #ddd;
         }
+        
+        /* 标题设计 */
         h2 {
-            color: #2c3e50;
+            color: var(--primary-purple);
             text-align: center;
-            margin-bottom: 30px;
-            border-bottom: 3px solid #3498db;
-            display: inline-block;
-            left: 50%;
-            transform: translateX(-50%);
+            margin-bottom: 40px;
+            font-size: 2em;
             position: relative;
-            padding-bottom: 5px;
         }
+        h2::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: var(--accent-purple);
+            margin: 10px auto 0;
+            border-radius: 2px;
+        }
+
+        /* 卡片精美化设计 */
+        .card {
+            background: white;
+            padding: 30px;
+            margin-bottom: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border-top: 4px solid var(--accent-purple);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(74, 20, 140, 0.15);
+        }
+        .card h3 {
+            margin-top: 0;
+            color: var(--primary-purple);
+            font-size: 1.3em;
+        }
+        .card p.date {
+            color: var(--accent-purple);
+            font-style: italic;
+            font-weight: 500;
+            margin-top: -10px;
+            margin-bottom: 15px;
+        }
+
+        /* About Me 区域 */
         .about-container {
             display: flex;
             align-items: center;
-            gap: 30px;
+            gap: 40px;
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
         }
         .about-text {
             flex: 2;
@@ -64,81 +118,67 @@
             text-align: center;
         }
         .about-photo img {
-            width: 200px;
-            height: 200px;
+            width: 220px;
+            height: 220px;
             border-radius: 50%;
             object-fit: cover;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            border: 4px solid var(--light-bg);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            transition: transform 0.3s ease;
         }
-        .card {
-            background: white;
-            padding: 20px;
-            margin-bottom: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        .about-photo img:hover {
+            transform: scale(1.05) rotate(2deg);
         }
-        .card h3 {
-            margin-top: 0;
-            color: #34495e;
-        }
-        .card p.date {
-            color: #7f8c8d;
-            font-style: italic;
-            margin-top: -10px;
-            margin-bottom: 15px;
-        }
-        .card ul {
-            margin-bottom: 0;
-            padding-left: 20px;
-        }
-        .skill-list {
-            list-style: none;
-            padding-left: 0;
-        }
-        .skill-list li {
-            margin-bottom: 10px;
-        }
-        /* 照片展示 Gallery 响应式网格设计 */
+
+        /* 照片展示 Gallery (20张响应式网格) */
         .gallery-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
             gap: 15px;
         }
         .gallery-grid a {
             display: block;
-            border-radius: 8px;
+            border-radius: 10px;
             overflow: hidden;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            transition: transform 0.2s;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
         .gallery-grid a:hover {
             transform: scale(1.05);
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            box-shadow: 0 8px 20px rgba(74, 20, 140, 0.2);
+            z-index: 10;
         }
         .gallery-grid img {
             width: 100%;
-            height: 180px; 
+            height: 160px; 
             object-fit: cover; 
             display: block;
         }
+
+        /* 按钮设计 */
         .btn {
             display: inline-block;
-            background: #3498db;
+            background: var(--accent-purple);
             color: white;
-            padding: 10px 20px;
+            padding: 12px 28px;
             text-decoration: none;
-            border-radius: 5px;
-            margin-top: 10px;
+            border-radius: 30px; /* 圆角按钮 */
+            font-weight: bold;
+            margin-top: 15px;
+            transition: background 0.3s, transform 0.2s;
         }
         .btn:hover {
-            background: #2980b9;
+            background: var(--primary-purple);
+            transform: translateY(-2px);
         }
+
         footer {
             text-align: center;
-            padding: 20px;
-            background: #2c3e50;
-            color: white;
-            margin-top: 40px;
+            padding: 25px;
+            background: var(--primary-purple);
+            color: rgba(255,255,255,0.8);
+            margin-top: 60px;
+            font-size: 0.9em;
         }
     </style>
 </head>
@@ -148,7 +188,7 @@
         <nav>
             <a href="#about">About</a>
             <a href="#coop">Internship</a>
-            <a href="#projects">SRTP/Activities</a>
+            <a href="#projects">Activities</a>
             <a href="#gallery">Travel</a>
             <a href="#skills">Skills</a>
             <a href="#resume">Resume</a>
@@ -160,9 +200,9 @@
         <h2>About Me</h2>
         <div class="about-container">
             <div class="about-text">
-                <p>Hello! I am Mingjing Zhou (周明镜), a senior Electrical Engineering and Automation student at UC Joint College, Chongqing University.</p>
-                <p>I am a highly motivated individual with a strong learning ability and sense of responsibility. I excel in my relevant coursework, and I possess advanced English speaking and listening skills, coupled with outstanding communication and organizational abilities.</p>
-                <p>Outside of my academic and engineering research, I love exploring the immersive worlds of video games. In particular, I am a huge fan of <strong>Baldur's Gate 3</strong> and the <strong>Resident Evil 4 Remake</strong>. I also find deep relaxation in getting lost in a good book.</p>
+                <p>Hello! I am Mingjing Zhou (周明镜), a senior Electrical Engineering and Automation student at the <strong>CQU-UC Joint Co-op Institute</strong>.</p>
+                <p>As an <strong>INTP-A</strong> and a <strong>Capricorn</strong>, I approach my academic and engineering pursuits with deep analytical precision, quiet determination, and a strong sense of responsibility. I excel in my relevant coursework and possess advanced English communication skills.</p>
+                <p>Beyond the lab and classroom, I have a profound passion for traveling. Exploring new places and experiencing different cultures is a vital source of inspiration for me (feel free to check out my travel gallery below!). When I'm not on the road, I love to unwind by diving into immersive video games like <em>Baldur's Gate 3</em> and the <em>Resident Evil 4 Remake</em>, or losing myself in a good book.</p>
             </div>
             <div class="about-photo">
                 <img src="profile.jpg" alt="Mingjing Zhou Profile Photo">
@@ -173,7 +213,7 @@
     <section id="coop">
         <h2>Internship Experience</h2>
         <div class="card">
-            <h3>Teaching Assistant - UC Joint College (CQU)</h3>
+            <h3>Teaching Assistant - CQU-UC Joint Co-op Institute</h3>
             <p class="date">Sep 2025 - Dec 2025</p>
             <ul>
                 <li>Assisted UC professor with coursework, graded assignments and exams.</li>
@@ -203,16 +243,12 @@
     <section id="projects">
         <h2>SRTP & Campus Activities</h2>
         <div class="card">
-            <h3>Current Project: Optimal V2G Infrastructure Planning (Current Thesis)</h3>
-            <p>Developing a data-driven model for Vehicle-to-Grid (V2G) infrastructure planning specifically considering multi-scenario blending (MSB) topology, to optimize the integration of electric vehicles and ensure grid stability.</p>
-        </div>
-        <div class="card">
             <h3>State Scientific Research Training Program (SRTP)</h3>
             <p class="date">Oct 2022 - Jul 2023</p>
             <p>Member. Project topic: Research on evidence conflict metrics based on quantum distance. (Read literature, summarized research thoughts and validated through simulation).</p>
         </div>
         <div class="card">
-            <h3>Mental Health Association - UC Joint College</h3>
+            <h3>Mental Health Association - CQU-UC Joint Co-op Institute</h3>
             <p class="date">Sep 2022 - Sep 2024</p>
             <p>Vice President / Officer. Organized monthly activities, handled news writing, and was responsible for operation of "Grief Cave" activities.</p>
         </div>
@@ -221,32 +257,36 @@
     <section id="gallery">
         <h2>Travel Gallery</h2>
         <div class="gallery-grid">
-            <a href="travel1.jpg" target="_blank"><img src="travel1.jpg" alt="Travel Photo 1"></a>
-            <a href="travel2.jpg" target="_blank"><img src="travel2.jpg" alt="Travel Photo 2"></a>
-            <a href="travel3.jpg" target="_blank"><img src="travel3.jpg" alt="Travel Photo 3"></a>
-            <a href="travel4.jpg" target="_blank"><img src="travel4.jpg" alt="Travel Photo 4"></a>
-            <a href="travel5.jpg" target="_blank"><img src="travel5.jpg" alt="Travel Photo 5"></a>
-            <a href="travel6.jpg" target="_blank"><img src="travel6.jpg" alt="Travel Photo 6"></a>
-            <a href="travel7.jpg" target="_blank"><img src="travel7.jpg" alt="Travel Photo 7"></a>
-            <a href="travel8.jpg" target="_blank"><img src="travel8.jpg" alt="Travel Photo 8"></a>
-            <a href="travel9.jpg" target="_blank"><img src="travel9.jpg" alt="Travel Photo 9"></a>
-            <a href="travel10.jpg" target="_blank"><img src="travel10.jpg" alt="Travel Photo 10"></a>
-            <a href="travel11.jpg" target="_blank"><img src="travel11.jpg" alt="Travel Photo 11"></a>
-            <a href="travel12.jpg" target="_blank"><img src="travel12.jpg" alt="Travel Photo 12"></a>
-            <a href="travel13.jpg" target="_blank"><img src="travel13.jpg" alt="Travel Photo 13"></a>
-            <a href="travel14.jpg" target="_blank"><img src="travel14.jpg" alt="Travel Photo 14"></a>
-            <a href="travel15.jpg" target="_blank"><img src="travel15.jpg" alt="Travel Photo 15"></a>
-            <a href="travel16.jpg" target="_blank"><img src="travel16.jpg" alt="Travel Photo 16"></a>
+            <a href="travel1.jpg" target="_blank"><img src="travel1.jpg" alt="Travel 1"></a>
+            <a href="travel2.jpg" target="_blank"><img src="travel2.jpg" alt="Travel 2"></a>
+            <a href="travel3.jpg" target="_blank"><img src="travel3.jpg" alt="Travel 3"></a>
+            <a href="travel4.jpg" target="_blank"><img src="travel4.jpg" alt="Travel 4"></a>
+            <a href="travel5.jpg" target="_blank"><img src="travel5.jpg" alt="Travel 5"></a>
+            <a href="travel6.jpg" target="_blank"><img src="travel6.jpg" alt="Travel 6"></a>
+            <a href="travel7.jpg" target="_blank"><img src="travel7.jpg" alt="Travel 7"></a>
+            <a href="travel8.jpg" target="_blank"><img src="travel8.jpg" alt="Travel 8"></a>
+            <a href="travel9.jpg" target="_blank"><img src="travel9.jpg" alt="Travel 9"></a>
+            <a href="travel10.jpg" target="_blank"><img src="travel10.jpg" alt="Travel 10"></a>
+            <a href="travel11.jpg" target="_blank"><img src="travel11.jpg" alt="Travel 11"></a>
+            <a href="travel12.jpg" target="_blank"><img src="travel12.jpg" alt="Travel 12"></a>
+            <a href="travel13.jpg" target="_blank"><img src="travel13.jpg" alt="Travel 13"></a>
+            <a href="travel14.jpg" target="_blank"><img src="travel14.jpg" alt="Travel 14"></a>
+            <a href="travel15.jpg" target="_blank"><img src="travel15.jpg" alt="Travel 15"></a>
+            <a href="travel16.jpg" target="_blank"><img src="travel16.jpg" alt="Travel 16"></a>
+            <a href="travel17.jpg" target="_blank"><img src="travel17.jpg" alt="Travel 17"></a>
+            <a href="travel18.jpg" target="_blank"><img src="travel18.jpg" alt="Travel 18"></a>
+            <a href="travel19.jpg" target="_blank"><img src="travel19.jpg" alt="Travel 19"></a>
+            <a href="travel20.jpg" target="_blank"><img src="travel20.jpg" alt="Travel 20"></a>
         </div>
     </section>
 
     <section id="skills">
         <h2>Skills & Strengths</h2>
         <div class="card">
-            <ul class="skill-list">
-                <li><strong>Engineering Core:</strong> V2G Infrastructure, Power Systems, Embedded Systems, MATLAB modeling.</li>
+            <ul>
+                <li><strong>Engineering Core:</strong> Power Systems, Embedded Systems, MATLAB modeling.</li>
                 <li><strong>Languages:</strong> Native Mandarin, English (CET-6), Basic Korean.</li>
-                <li><strong>Software:</strong> Matlab (expert), LabVIEW, C++, professional engineering tools.</li>
+                <li><strong>Software:</strong> Matlab (expert), Python, Simulink, C++, professional engineering tools.</li>
                 <li><strong>Strengths:</strong> Strong learner, highly responsible, proactive problem solver, advanced communication skills.</li>
             </ul>
         </div>
@@ -264,7 +304,7 @@
         <h2>Contact Information</h2>
         <div class="card" style="text-align: center;">
             <p>I am actively seeking research and internship opportunities in electrical engineering and power systems.</p>
-            <p><strong>Email:</strong> <a href="mailto:Zhoumingjingcqu@163.com">Zhoumingjingcqu@163.com</a></p>
+            <p><strong>Email:</strong> <a href="mailto:Zhoumingjingcqu@163.com" style="color: var(--accent-purple); font-weight: bold;">Zhoumingjingcqu@163.com</a></p>
             <p><strong>Address:</strong> Chongqing, China</p>
         </div>
     </section>
