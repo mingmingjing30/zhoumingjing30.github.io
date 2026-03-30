@@ -5,37 +5,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>E-Portfolio | Mingjing Zhou (周明镜)</title>
     <style>
-        /* 深紫色主题配色方案 */
+        /* 深紫色高级主题配色方案 */
         :root {
-            --primary-purple: #4a148c; /* 深紫主色调 */
-            --accent-purple: #9c27b0;  /* 亮紫强调色 */
-            --light-bg: #f8f6fa;       /* 淡紫灰背景 */
-            --text-main: #333333;
-            --text-light: #666666;
-            --container-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            --card-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            --border-radius-main: 12px;
+            --primary-purple: #4a148c; /* 深紫主色调 (导航栏, 标题) */
+            --accent-purple: #9c27b0;  /* 亮紫强调色 (卡片装饰, 按钮) */
+            --light-bg: #f5f3f7;       /* 极淡紫灰背景 (整个网页) */
+            --text-main: #2c3e50;
+            --text-light: #7f8c8d;
+            --card-border-radius: 15px;
         }
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.7;
+            line-height: 1.8;
             margin: 0;
             padding: 0;
             color: var(--text-main);
             background-color: var(--light-bg);
         }
         
-        /* 顶部导航栏 - 紫色渐变 */
+        /* 1. 顶部导航栏 - 高级紫灰色渐变 */
         header {
-            background: linear-gradient(135deg, var(--primary-purple), #6a1b9a);
+            background: linear-gradient(135deg, var(--primary-purple), #6a1b9a, #9575cd);
             color: white;
             padding: 1rem 0;
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
         }
         nav {
             text-align: center;
@@ -43,165 +41,197 @@
         nav a {
             color: rgba(255, 255, 255, 0.9);
             text-decoration: none;
-            margin: 0 15px;
+            margin: 0 18px;
             font-weight: 600;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+            font-size: 0.95em;
             transition: color 0.3s;
         }
         nav a:hover {
             color: #e1bee7; /* 浅紫色悬停效果 */
         }
 
+        /* 全局Section容器 */
         section {
-            padding: 100px 20px 40px;
-            max-width: 900px;
+            padding: 120px 20px 60px; /* 增加顶部padding以避开Fixed Header */
+            max-width: 1000px; /* 增加主容器宽度，使排版更大气 */
             margin: auto;
         }
         
-        /* 标题设计 */
+        /* 全局大标题设计 */
         h2 {
             color: var(--primary-purple);
             text-align: center;
-            margin-bottom: 40px;
-            font-size: 2em;
+            margin-bottom: 50px;
+            font-size: 2.2em;
             position: relative;
+            font-weight: 700;
         }
         h2::after {
             content: '';
             display: block;
-            width: 60px;
+            width: 80px;
             height: 4px;
             background: var(--accent-purple);
-            margin: 10px auto 0;
+            margin: 15px auto 0;
             border-radius: 2px;
         }
 
-        /* 卡片精美化设计 */
+        /* 统一卡片设计 */
         .card {
             background: white;
-            padding: 30px;
-            margin-bottom: 25px;
-            border-radius: var(--border-radius-main);
-            box-shadow: var(--card-shadow);
-            border-top: 4px solid var(--accent-purple);
+            padding: 35px;
+            margin-bottom: 30px;
+            border-radius: var(--card-border-radius);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.06); /* 柔和阴影 */
+            border-top: 5px solid var(--accent-purple); /* 顶部紫色装饰条 */
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
         .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(74, 20, 140, 0.15);
+            transform: translateY(-8px);
+            box-shadow: 0 12px 35px rgba(74, 20, 140, 0.18);
         }
         .card h3 {
             margin-top: 0;
             color: var(--primary-purple);
-            font-size: 1.3em;
+            font-size: 1.4em;
+            font-weight: 600;
         }
         .card p.date {
             color: var(--accent-purple);
             font-style: italic;
-            font-weight: 500;
+            font-weight: 600;
             margin-top: -10px;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
         .card ul {
             margin-bottom: 0;
+            padding-left: 20px;
+        }
+        .card li {
+            margin-bottom: 8px;
         }
 
-        /* 🆕 About Me 区域 - 照片放大且改成矩形 */
-        .about-container {
+        /* ---------------------------------------------------- */
+        /* 🆕 2. About Me Section - 垂直堆叠布局 */
+        /* ---------------------------------------------------- */
+        .about-stacked {
             display: flex;
-            align-items: flex-start; /* 顶部对齐 */
+            flex-direction: column; /* 垂直排列 */
+            align-items: center; /* 居中 */
             gap: 40px;
-            background: white;
-            padding: 40px;
-            border-radius: var(--border-radius-main);
-            box-shadow: var(--container-shadow);
         }
-        .about-text {
-            flex: 1.2; /* 文字区域比照片稍微宽一点 */
+        
+        /* 文字卡片居中 */
+        .about-text-card {
+            width: 100%; /* 占满Section宽度 */
+            max-width: 850px; /* 文字不要太宽，方便阅读 */
+            margin: 0 auto;
         }
-        .about-photo {
-            flex: 1; /* 照片区域 */
+
+        /* 🆕 风景照片区域 (改为大矩形圆角照片) */
+        .about-photo-wrapper {
+            width: 100%;
             text-align: center;
         }
-        /* 放大 About 照片 (矩形圆角) */
-        .about-photo img {
+        /* 放大About照片 (横屏原图) */
+        .about-photo-wrapper img {
             width: 100%; /* 填充容器 */
-            max-width: 100%; /* 确保不超宽 */
-            height: auto; /* 保持原图纵横比 (横屏原图) */
-            border-radius: 12px; /* 矩形圆角 */
-            border: 4px solid var(--light-bg);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            max-width: 850px; /* 宽度与文字卡片一致 */
+            height: auto; /* 保持原图纵横比 (横屏) */
+            object-fit: cover;
+            border-radius: var(--card-border-radius); /* 矩形圆角 */
+            border: 6px solid white; /* 白色边框增加高级感 */
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
             transition: transform 0.3s ease;
         }
-        .about-photo img:hover {
-            transform: scale(1.02);
+        .about-photo-wrapper img:hover {
+            transform: scale(1.03);
         }
 
-        /* 🆕 Internship 区域 - 添加证件照排版 */
+
+        /* ---------------------------------------------------- */
+        /* 🆕 3. Internship Section - 完美的 fixed (sticky) ID Photo */
+        /* ---------------------------------------------------- */
         .internship-container {
-            display: flex;
-            align-items: flex-start;
+            display: flex; /* 使用Flexbox将照片和内容分开 */
+            align-items: flex-start; /* 顶部对齐 */
             gap: 40px;
         }
-        /* 放在左侧的证件照区域 */
-        .id-photo-box {
-            flex: 0 0 160px; /* 固定宽度 */
-            position: sticky; /* 滚动时固定住，效果更好 */
-            top: 100px;
+
+        /* 🆒 完美的Sticky证件照框 */
+        .sticky-id-wrapper {
+            flex: 0 0 160px; /* 固定宽度，不要随文字变化 */
+            position: sticky; /* 🆕 开启固定效果 */
+            top: 120px; /* 🆕 距导航栏底部的距离 (Fixed Here!) */
+            height: fit-content; /* 🆕 关键：自身高度只包住内容，允许内部卡片滑动 */
             text-align: center;
+            z-index: 5; /* 确保在卡片上层 */
         }
-        /* 证件照 (竖屏标准标准 AR) */
-        .id-photo-box img {
+        
+        /* 证件照 (竖屏比例 AR) */
+        .sticky-id-wrapper img {
             width: 160px;
-            height: 220px; /* 标准证件照比例 (e.g., 3:4) */
+            height: 220px; /* 竖屏证件照比例 (e.g., 3:4) */
             object-fit: cover; /* 裁剪填充，保证不拉伸 */
-            border-radius: 8px;
-            border: 3px solid white;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-        }
-        /* 放在右侧的实习经历卡片区域 */
-        .internship-content {
-            flex: 1;
+            border-radius: 10px; /* 矩形圆角 */
+            border: 4px solid white;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.1);
         }
 
-        /* 📸 照片展示 Gallery - 使用大图网格设计 */
+        /* 右侧实习经历卡片滑动区域 */
+        .internship-content-list {
+            flex: 1; /* 占据剩余全部空间 */
+        }
+        /* Internship 卡片顶部亮紫色装饰条 */
+        .internship-content-list .card {
+            border-top: 5px solid var(--accent-purple);
+        }
+
+
+        /* ---------------------------------------------------- */
+        /* 📸 4. Travel Gallery Section - 大图网格设计 */
+        /* ---------------------------------------------------- */
         .gallery-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); /* 更大的空位以便放大照片 */
+            gap: 25px; /* 增加照片间距 */
         }
         .gallery-grid a {
             display: block;
-            border-radius: 10px;
+            border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.12);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
         .gallery-grid a:hover {
-            transform: scale(1.03); /* 微微放大一点 */
-            box-shadow: 0 8px 20px rgba(74, 20, 140, 0.2);
+            transform: scale(1.05); /* 悬停时明显放大 */
+            box-shadow: 0 10px 30px rgba(74, 20, 140, 0.25);
             z-index: 10;
         }
         .gallery-grid img {
             width: 100%;
-            height: 260px; 
+            height: 280px; /* 🆕 同步放大高度到 280px */
             object-fit: cover; 
             display: block;
         }
 
+        /* ---------------------------------------------------- */
+        /* 5. 其他区域与适配 */
+        /* ---------------------------------------------------- */
+
         /* 响应式媒体查询 - 移动端适配 */
         @media (max-width: 768px) {
-            .about-container, .internship-container {
+            .internship-container {
                 flex-direction: column; /* 手机上改回垂直排列 */
                 gap: 20px;
                 align-items: center;
             }
-            .about-text, .internship-content {
-                width: 100%;
-            }
-            .id-photo-box {
+            .sticky-id-wrapper {
                 position: relative; /* 手机上不固定 */
                 top: 0;
+                margin-bottom: 20px;
             }
         }
 
@@ -210,24 +240,28 @@
             display: inline-block;
             background: var(--accent-purple);
             color: white;
-            padding: 12px 28px;
+            padding: 14px 30px;
             text-decoration: none;
-            border-radius: 30px; 
+            border-radius: 35px; 
             font-weight: bold;
+            font-size: 0.95em;
+            letter-spacing: 0.5px;
             margin-top: 15px;
-            transition: background 0.3s, transform 0.2s;
+            transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
+            box-shadow: 0 4px 10px rgba(156, 39, 176, 0.2);
         }
         .btn:hover {
             background: var(--primary-purple);
-            transform: translateY(-2px);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(74, 20, 140, 0.3);
         }
 
         footer {
             text-align: center;
-            padding: 25px;
+            padding: 30px;
             background: var(--primary-purple);
             color: rgba(255,255,255,0.8);
-            margin-top: 60px;
+            margin-top: 80px;
             font-size: 0.9em;
         }
     </style>
@@ -248,28 +282,30 @@
 
     <section id="about">
         <h2>About Me</h2>
-        <div class="about-container">
-            <div class="about-text">
+        <div class="about-stacked">
+            
+            <div class="card about-text-card">
                 <p>Hello! I am Mingjing Zhou (周明镜), a senior Electrical Engineering and Automation student at the <strong>CQU-UC Joint Co-op Institute</strong>.</p>
                 <p>As an <strong>INTP-A</strong> and a <strong>Capricorn</strong>, I approach my academic and engineering pursuits with deep analytical precision, quiet determination, and a strong sense of responsibility. I excel in my relevant coursework and possess advanced English communication skills.</p>
                 <p>Beyond the lab and classroom, I have a profound passion for traveling. Exploring new places and experiencing different cultures is a vital source of inspiration for me (feel free to check out my travel gallery below!). When I'm not on the road, I love to unwind by diving into immersive video games like <em>Baldur's Gate 3</em> and the <em>Resident Evil 4 Remake</em>, or losing myself in a good book.</p>
             </div>
-            <div class="about-photo">
-                <img src="Profile.jpg" alt="Mingjing Zhou Profile Photo">
+
+            <div class="about-photo-wrapper">
+                <img src="Profile.jpg" alt="Mingjing Zhou Landscape Photo">
             </div>
-        </div>
-    </section>
+
+        </div> </section>
 
     <section id="coop">
         <h2>Internship Experience</h2>
         
         <div class="internship-container">
             
-            <div class="id-photo-box">
+            <div class="sticky-id-wrapper">
                 <img src="id_photo.jpg" alt="Mingjing Zhou ID Photo">
             </div>
             
-            <div class="internship-content">
+            <div class="internship-content-list">
                 <div class="card">
                     <h3>Teaching Assistant - CQU-UC Joint Co-op Institute</h3>
                     <p class="date">Sep 2025 - Dec 2025</p>
