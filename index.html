@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My E-Portfolio</title>
+    <style>
+        /* 这里是控制网页排版的 CSS 代码 */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            background-color: #f9f9f9;
+        }
+        header {
+            background: #2c3e50;
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        nav {
+            text-align: center;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+        }
+        nav a:hover {
+            color: #3498db;
+        }
+        section {
+            padding: 80px 20px 40px;
+            max-width: 900px;
+            margin: auto;
+            border-bottom: 1px solid #ddd;
+        }
+        h2 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .about-container {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+        .about-text {
+            flex: 2;
+        }
+        .about-photo {
+            flex: 1;
+            text-align: center;
+        }
+        /* 建议上传一张正方形的专业证件照或生活照 */
+        .about-photo img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .card {
+            background: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        .btn {
+            display: inline-block;
+            background: #3498db;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        .btn:hover {
+            background: #2980b9;
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #2c3e50;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <a href="#about">About Me</a>
+            <a href="#coop">Co-op Experience</a>
+            <a href="#projects">Projects</a>
+            <a href="#skills">Skills</a>
+            <a href="#resume">Resume</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <section id="about">
+        <h2>About Me</h2>
+        <div class="about-container">
+            <div class="about-text">
+                <p>Hello! I am an Electrical Engineering student deeply passionate about sustainable energy and the future of smart grids. I am currently based in Chongqing and will be pursuing my Ph.D. in the United States starting in August 2026.</p>
+                <p>My academic journey is driven by a desire to bridge theoretical research with practical engineering solutions. I thrive in environments that challenge me to solve complex problems, and I am actively seeking opportunities to further expand my expertise in power systems.</p>
+            </div>
+            <div class="about-photo">
+                <img src="photo.jpg" alt="My Profile Photo">
+            </div>
+        </div>
+    </section>
+
+    <section id="coop">
+        <h2>Co-op Experience</h2>
+        <div class="card">
+            <h3>Research Assistant - [University/Company Name]</h3>
+            <p><strong>[Start Date] – [End Date]</strong></p>
+            <ul>
+                <li>Assisted in analyzing data related to electrical infrastructure.</li>
+                <li>Collaborated with a team of engineers to test and validate system performance.</li>
+                <li>[在此处添加你的具体实习或实验室经历，写出你的具体贡献]</li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="projects">
+        <h2>Projects & Involvements</h2>
+        <div class="card">
+            <h3>Data-Driven Optimal V2G Infrastructure Planning</h3>
+            <p>For my current thesis, I am developing a data-driven model for Vehicle-to-Grid (V2G) infrastructure planning. This project specifically considers MSB topology to optimize the integration of electric vehicles into the main power grid, ensuring both efficiency and stability.</p>
+        </div>
+        <div class="card">
+            <h3>Embedded Systems & Machine Learning Coursework</h3>
+            <p>Completed intensive coursework integrating embedded systems with machine learning algorithms, allowing for real-time data processing and predictive modeling in engineering applications.</p>
+        </div>
+    </section>
+
+    <section id="skills">
+        <h2>Skills & Strengths</h2>
+        <div class="card">
+            <ul>
+                <li><strong>Core Engineering:</strong> Power Systems, Power Electronics, Embedded Systems, V2G Technology.</li>
+                <li><strong>Programming & Software:</strong> [e.g., Python, MATLAB, C/C++, LaTeX]</li>
+                <li><strong>Mathematics & Analysis:</strong> Engineering Probability, Data Structures, Machine Learning.</li>
+                <li><strong>Strengths:</strong> Strong analytical thinking, highly adaptable, proactive problem solver.</li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="resume">
+        <h2>Resume</h2>
+        <div class="card" style="text-align: center;">
+            <p>Please click the button below to view or download my fully updated resume.</p>
+            <a href="resume.pdf" target="_blank" class="btn">Download My Resume (PDF)</a>
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2>Contact Information</h2>
+        <div class="card" style="text-align: center;">
+            <p>I am always open to discussing research, engineering projects, or PhD opportunities.</p>
+            <p><strong>Email:</strong> <a href="mailto:your.email@example.com">your.email@example.com</a></p>
+            <p><strong>LinkedIn:</strong> <a href="https://linkedin.com/in/yourprofile" target="_blank">linkedin.com/in/yourprofile</a></p>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 My E-Portfolio. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
